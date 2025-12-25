@@ -7,6 +7,7 @@ import {
     SkinnedMesh,
     SRGBColorSpace,
     Texture,
+    TextureLoader,
     Vector2,
     WebGLRenderer
 } from "three";
@@ -28,8 +29,12 @@ export default class ShaderTester {
 
     fileLoader: FileLoader;
     glbLoader: GLTFLoader;
+    textureLoader: TextureLoader;
 
     mesh: Mesh | SkinnedMesh | undefined; // the weapon models are a SkinnedMesh, because they are rigged for animations
+    material: ShaderMaterial | undefined;
+    
+    texture: Texture | undefined;
 
     lastTime: number;
     deltaTime: number;
@@ -78,6 +83,7 @@ export default class ShaderTester {
 
         this.fileLoader = new FileLoader();
         this.glbLoader = new GLTFLoader();
+        this.textureLoader = new TextureLoader();
 
         // this.mesh = new Mesh(new PlaneGeometry(4.5, 4.5));
         // this.mesh = new Mesh(new DodecahedronGeometry(1, 1));
@@ -85,6 +91,9 @@ export default class ShaderTester {
 
         this.guiManager = new GuiManager(async (weapon: string) => {
             this.loadModel(weapon).catch(console.error);
+        }, async (url: string) => {
+            this.texture = await this.textureLoader.loadAsync(url)
+            this.material.uniforms["uChannel0"].value = this.texture
         });
 
 
@@ -114,7 +123,7 @@ export default class ShaderTester {
         const uniforms = {
             uTime: {value: 1}, // start with 1 to avoid potential divisions by 0
             uResolution: {value: new Vector2(window.innerWidth, window.innerHeight)},
-            uChannel0: {value: new Texture()},
+            uChannel0: {value: this.texture ? this.texture : await this.textureLoader.loadAsync("./images/missing.png")},
         };
 
         const shaderMaterial = new ShaderMaterial({
@@ -129,7 +138,7 @@ export default class ShaderTester {
         }
 
         this.mesh.material = shaderMaterial;
-
+        this.material = shaderMaterial;
     }
 
     async loadModel(name: string) {

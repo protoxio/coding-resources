@@ -12,9 +12,15 @@
 <body>
 <canvas id="threeCanvas"></canvas>
 <script type="module" src="/src/main.ts"></script>
-<div class="select-wrapper" style="position: absolute; top: 10px; right: 10px;">
-    <select id="weaponSelector">
-    </select>
+<div class="settings-wrapper">
+    <div class="select-wrapper">
+        <select id="weaponSelector">
+        </select>
+    </div>
+    <label id="textureDropZone">
+        <span>Choose a file</span>
+        <input id="textureInput" type="file">
+    </label>
 </div>
 </body>
 </html>
