@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "useDefineForClassFields": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "checkJs": true,
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "verbatimModuleSyntax": false,
+    "moduleDetection": "force",
+    "outDir": "./dist",
+    "paths": {
+      "@common/*": ["../common/src/*"]
+    }
+  },
+  "include": [
+    "src/**/*.ts"
+  ]
+}

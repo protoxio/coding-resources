@@ -1,0 +1,22 @@
+{
+  "name": "shader-skins",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "start": "vite",
+    "build": "vue-tsc --noEmit&& vite build"
+  },
+  "dependencies": {
+    "nanoevents": "^9.1.0",
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "terser": "^5.39.0",
+    "typescript": "~5.7.2",
+    "vite": "^6.4.1",
+    "vue-tsc": "^2.2.4",
+    "@types/three": "^0.180.0"
+  }
+}

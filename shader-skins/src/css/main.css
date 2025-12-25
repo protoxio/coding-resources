@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --corner-rounding: 8px;
+
+    --background-color: rgba(49, 45, 29, 0.6);
+    --accent-color: 133, 73, 197;
+    --highlight-color: 238, 181, 26;
+    /*--dark-color: 65, 65, 65;*/
+    /*--darker-color: 0, 15, 38;*/
+    --dark-color: 45, 49, 66;
+    --darker-color: 11, 12, 16;
+    --text-color: 255, 240, 240;
+
+    --default: 104, 104, 104;
+    --common: 168, 209, 105;
+    --rare: 112, 173, 255;
+    --epic: 196, 111, 217;
+    --legendary: 238, 181, 26;
+    --exceptional: 255, 49, 49;
+    --classified: 246, 25, 192;
+    --celestial: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(119, 226, 255, 1) 40%, rgba(222, 109, 235, 1) 80%);
+
+    --teamAlphaColor: 0, 191, 80;
+    --teamBetaColor: 255, 62, 62;
+
+    --primary-dark-gradient: linear-gradient(180deg, rgba(var(--dark-color), 0.8) 0%, rgba(var(--darker-color), 0.9) 100%);
+    --primary-gradient: linear-gradient(180deg, rgba(var(--accent-color), 0.2) 0%, rgba(var(--accent-color), 0.7) 100%);
+
+    --primary-animation-time: 0.3s;
+    --primary-animation-timing-function: ease;
+
+    --fade-delay: 4s;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Prompt', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text-color);
+    background-color: rgba(var(--dark-color));
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+
+#threeCanvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* -- Scrollbar -- */
+
+::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #b3b3b3;
+    border-radius: var(--corner-rounding);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #888;
+}
