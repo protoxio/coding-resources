@@ -60,6 +60,20 @@ body {
     background: #888;
 }
 
+.settings-wrapper {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    width: 220px;
+}
+
+.settings-wrapper > * {
+    margin-top: 10px;
+}
+
 /* -- weapon selection -- */
 
 .select-wrapper select {
@@ -145,3 +159,39 @@ select option:checked {
     background-color: rgb(var(--dark-color));
 }
 
+#textureDropZone {
+    box-sizing: border-box;
+    color: rgb(var(--text-color));
+    width: 220px;
+    height: 220px;
+    padding: 10px 14px 10px 14px;
+    border-radius: var(--corner-rounding);
+    background: linear-gradient(
+        180deg,
+        rgb(var(--dark-color)),
+        rgb(var(--darker-color))
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    background-size: cover;
+    image-rendering: pixelated;
+}
+
+#textureDropZone.has-image span {
+    color: transparent;
+}
+
+#textureDropZone::after {
+    content: "uTexture0";
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    font-size: 10px;
+}
+
+#textureDropZone input {
+    display: none;
+}
