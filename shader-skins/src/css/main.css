@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
-    --corner-rounding: 8px;
+    --corner-rounding: 4px;
 
     --background-color: rgba(49, 45, 29, 0.6);
     --accent-color: 133, 73, 197;
@@ -71,3 +71,90 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: #888;
 }
+
+/* -- weapon selection -- */
+
+.select-wrapper select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    width: 100%;
+    padding: 10px 42px 10px 14px;
+
+    border-radius: var(--corner-rounding);
+
+    background: linear-gradient(
+            180deg,
+            rgba(var(--dark-color), 0.85),
+            rgba(var(--darker-color), 0.95)
+    );
+
+    color: rgb(var(--text-color));
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+    outline: none;
+
+    transition: border-color var(--primary-animation-time) var(--primary-animation-timing-function),
+    box-shadow var(--primary-animation-time) var(--primary-animation-timing-function),
+    background var(--primary-animation-time) var(--primary-animation-timing-function);
+}
+
+.select-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 220px;
+}
+
+.select-wrapper select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    width: 100%;
+    padding: 10px 38px 10px 14px;
+
+    border-radius: var(--corner-rounding);
+
+    background: linear-gradient(
+            180deg,
+            rgba(var(--dark-color), 0.85),
+            rgba(var(--darker-color), 0.95)
+    );
+
+    color: rgb(var(--text-color));
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+    outline: none;
+}
+
+.select-wrapper::after {
+    content: "";
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 0;
+    height: 0;
+
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid rgba(var(--text-color), 0.7);
+
+    pointer-events: none;
+}
+
+select option {
+    background-color: rgb(var(--darker-color));
+    color: rgb(var(--text-color));
+}
+
+select option:checked {
+    background-color: rgb(var(--dark-color));
+}
+
