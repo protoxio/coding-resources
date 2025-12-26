@@ -92,8 +92,9 @@ export default class ShaderTester {
         this.guiManager = new GuiManager(async (weapon: string) => {
             this.loadModel(weapon).catch(console.error);
         }, async (url: string) => {
-            this.texture = await this.textureLoader.loadAsync(url)
-            this.material.uniforms["uChannel0"].value = this.texture
+            this.texture = await this.textureLoader.loadAsync(url);
+            this.texture.flipY = false;
+            this.material.uniforms["uChannel0"].value = this.texture;
         });
 
 
