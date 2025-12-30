@@ -24,3 +24,5 @@ The game provides the following uniforms to your shader:
 - `uChannel0`: utility texture needed for some shaders
 
 Feel free to add your own uniforms, but be aware that **we cannot guarantee they will be added to the game**. Contact us on Discord, and we can try to figure out a solution to make your shader work.
+
+If your shader requires a texture by default, and you don't want to import it everytime, you can simply name it uTexture0.png and put it into the folder of your shader for it to be loaded automatically

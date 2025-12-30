@@ -1,4 +1,5 @@
 import {
+    ColorManagement,
     FileLoader,
     Mesh,
     PerspectiveCamera,
@@ -13,7 +14,6 @@ import {
 } from "three";
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
-import {Weapon} from "./Weapons";
 import GuiManager from "./GuiManager";
 
 export default class ShaderTester {
@@ -33,7 +33,7 @@ export default class ShaderTester {
 
     mesh: Mesh | SkinnedMesh | undefined; // the weapon models are a SkinnedMesh, because they are rigged for animations
     material: ShaderMaterial | undefined;
-    
+
     texture: Texture | undefined;
 
     lastTime: number;
@@ -58,6 +58,7 @@ export default class ShaderTester {
         this.renderer.outputColorSpace = SRGBColorSpace;
         this.renderer.setPixelRatio(window.devicePixelRatio);
 
+        ColorManagement.enabled = false;
 
         this.camera = new PerspectiveCamera(20, window.innerWidth / window.innerHeight, 0.01, 100);
         this.camera.position.z = -10;
@@ -94,6 +95,7 @@ export default class ShaderTester {
         }, async (url: string) => {
             this.texture = await this.textureLoader.loadAsync(url);
             this.texture.flipY = false;
+            this.texture.generateMipmaps = false;
             this.material.uniforms["uChannel0"].value = this.texture;
         });
 
@@ -120,6 +122,11 @@ export default class ShaderTester {
 
         const vertexShader = await this.fileLoader.loadAsync(`./shaders/${this.shaderName}/vertex.vert`) as string;
         const fragmentShader = await this.fileLoader.loadAsync(`./shaders/${this.shaderName}/fragment.frag`) as string;
+
+        if (!this.texture) {
+            const textureResult = await this.textureLoader.loadAsync(`./shaders/${this.shaderName}/uTexture0.png`).catch(() => console.log("found no default texture for shader:", this.shaderName));
+            if (textureResult) this.texture = textureResult;
+        }
 
         const uniforms = {
             uTime: {value: 1}, // start with 1 to avoid potential divisions by 0
